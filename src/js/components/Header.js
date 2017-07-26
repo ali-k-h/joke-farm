@@ -1,15 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import GLogin from './gLogin'
 
 // The Header creates links that can be used to navigate
 // between routes.
 const Header = () => (
     <header>
         <nav>
-            <ul>
-                <li><Link to='/'>Home</Link></li>
-                <li><Link to='/login'>Logout</Link></li>
-            </ul>
+          <GLogin/>
         </nav>
     </header>
 )
