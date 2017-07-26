@@ -9,7 +9,7 @@ module.exports =(env) => {
     return {
         context: path.join(__dirname, "src"),
         devtool: debug ? "inline-sourcemap" : false,
-        entry: "./js/main.js",
+        entry: "./js/index.js",
         module: {
             loaders: [
                 {
