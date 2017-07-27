@@ -47,14 +47,14 @@ export default class GLogin extends React.Component{
             greeting = ''
             signupClick = this.signIn.bind(this)
         }
-        this.setState((prevState, props) => {
+        this.setState(() => {
             return {GoogleAuth, user, signupText, greeting, signupClick};
         })
         this.props.callbackFromParent(user);
     }
 
     componentDidMount(){
-        let errMsg = 'So sorry! Something went wrong! Please try later.'
+        const errMsg = 'So sorry! Something went wrong! Please try later.'
         let self = this
         let sc = document.createElement('script')
         sc.src = 'https://apis.google.com/js/platform.js'
