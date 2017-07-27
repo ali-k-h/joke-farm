@@ -9,7 +9,7 @@ export default class GLogin extends React.Component{
             signupText:'',
             signupClick:()=>{},
             greeting:'',
-            user:{},
+            user:null,
             GoogleAuth:{}
         }
     }
@@ -34,8 +34,9 @@ export default class GLogin extends React.Component{
             };
         }
         else{
-          user = {}  
+          user = null
         }
+
         let signupText, greeting, signupClick
         if (isSignedIn) {
             signupText = 'Sign out'
@@ -49,46 +50,43 @@ export default class GLogin extends React.Component{
         this.setState((prevState, props) => {
             return {GoogleAuth, user, signupText, greeting, signupClick};
         })
+        this.props.callbackFromParent(user);
     }
 
     componentDidMount(){
         let errMsg = 'So sorry! Something went wrong! Please try later.'
-        try{
-            let self = this
-            let sc = document.createElement('script')
-            sc.src = 'https://apis.google.com/js/platform.js'
-            sc.type = 'text/javascript'
-            sc.async = true
-            document.body.appendChild(sc)
-            sc.onload = ()=>{
-                let scope = 'https://www.googleapis.com/auth/userinfo.profile'
-                let clientId = '_428861106660-3k079ehc7hnlum5plt6pqifsoas0ln6g.apps.googleusercontent.com'
-                gapi.load('client', {
-                    callback: ()=> {
-                        gapi.client.init({
-                            'clientId': clientId,
-                            'scope': scope
-                        }).then(() =>{
-                            let GoogleAuth = gapi.auth2.getAuthInstance();
-                            self.updateState(GoogleAuth)
-                            GoogleAuth.isSignedIn.listen(self.updateSigninStatus.bind(self));
-                        },
-                        () => {alert(errMsg)})
+        let self = this
+        let sc = document.createElement('script')
+        sc.src = 'https://apis.google.com/js/platform.js'
+        sc.type = 'text/javascript'
+        sc.async = true
+        document.body.appendChild(sc)
+        sc.onload = ()=>{
+            let scope = 'https://www.googleapis.com/auth/userinfo.profile'
+            let clientId = '428861106660-3k079ehc7hnlum5plt6pqifsoas0ln6g.apps.googleusercontent.com'
+            gapi.load('client', {
+                callback: ()=> {
+                    gapi.client.init({
+                        'clientId': clientId,
+                        'scope': scope
+                    }).then(() =>{
+                        let GoogleAuth = gapi.auth2.getAuthInstance();
+                        self.updateState(GoogleAuth)
+                        GoogleAuth.isSignedIn.listen(self.updateSigninStatus.bind(self));
                     },
-                    onerror: ()=> {
-                        alert(errMsg)
-                    },
-                    timeout: 5000,
-                    ontimeout: ()=> {
-                        alert(errMsg)
-                    }
-                });
-            }
-        }
-        catch(e){
-            alert(errMsg);
+                    () => {alert(errMsg)})
+                },
+                onerror: ()=> {
+                    alert(errMsg)
+                },
+                timeout: 5000,
+                ontimeout: ()=> {
+                    alert(errMsg)
+                }
+            });
         }
     }
+
     render(){
         return(
             <div>
