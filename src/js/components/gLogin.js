@@ -47,14 +47,14 @@ export default class GLogin extends React.Component{
             greeting = ''
             signupClick = this.signIn.bind(this)
         }
-        this.setState((prevState, props) => {
+        this.setState(() => {
             return {GoogleAuth, user, signupText, greeting, signupClick};
         })
         this.props.callbackFromParent(user);
     }
 
     componentDidMount(){
-        let errMsg = 'So sorry! Something went wrong! Please try later.'
+        const errMsg = 'So sorry! Something went wrong! Please try later.'
         let self = this
         let sc = document.createElement('script')
         sc.src = 'https://apis.google.com/js/platform.js'
@@ -62,8 +62,8 @@ export default class GLogin extends React.Component{
         sc.async = true
         document.body.appendChild(sc)
         sc.onload = ()=>{
-            let scope = 'https://www.googleapis.com/auth/userinfo.profile'
-            let clientId = '428861106660-3k079ehc7hnlum5plt6pqifsoas0ln6g.apps.googleusercontent.com'
+            const scope = 'https://www.googleapis.com/auth/userinfo.profile'
+            const clientId = '428861106660-3k079ehc7hnlum5plt6pqifsoas0ln6g.apps.googleusercontent.com'
             gapi.load('client', {
                 callback: ()=> {
                     gapi.client.init({

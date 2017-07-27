@@ -1,7 +1,7 @@
     export function xhrPromise(options){
     return new Promise((resolve, reject)=>{
         try {
-            var xhr = new XMLHttpRequest();
+            let xhr = new XMLHttpRequest();
             xhr.open(options.method, options.url, true);
             xhr.responseType = options.responseType || "json";
             xhr.onload = function(){
@@ -29,7 +29,7 @@
                     xhr.setRequestHeader(key, options.headers[key]);
                 });
             }
-            var params = options.params;
+            let params = options.params;
             /** We'll need to stringify if we've been given an object
              If we have a string, this is skipped.*/
             if (params && typeof params === 'object') {
