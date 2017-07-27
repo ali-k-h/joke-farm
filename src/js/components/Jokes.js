@@ -13,7 +13,6 @@ export default class Jokes extends React.Component{
                 );
             });
         }
-
         return(
             <ul>
                 {listItems}

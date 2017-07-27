@@ -8,10 +8,26 @@ export default class Header extends React.Component{
         super()
         this.state = {
             user: {},
-            jokes: []
+            jokes: [],
+            originalJokes:[],
+            showSearch:false
         }
     }
-    myCallback(user){
+    search(e){
+        let str = e.target.value
+        let _jokes = this.state.originalJokes.slice(0)
+        let jokes = _jokes.filter((item)=>{
+            if(item.joke.toLowerCase().indexOf(str.toLowerCase()) > -1) return item
+        })
+        this.setState(() => {
+            return {jokes};
+        })
+
+    }
+    callback(user){
+        let showSearch
+        let jokes
+        let originalJokes
         if(user){
             this.setState(user)
             const firstName = user.givenName
@@ -22,21 +38,23 @@ export default class Header extends React.Component{
             }
             xhr.xhrPromise(options)
                 .then((res)=>{
-                    //console.log(res.response.value)
-                    let jokes = res.response.value
-                    // this.setState(jokes)
-                    this.setState((prevState, props) => {
-                        return {jokes};
+                    jokes = res.response.value
+                    originalJokes = jokes
+                    showSearch = true
+                    this.setState(() => {
+                        return {jokes,originalJokes,showSearch};
                     })
                 })
                 .catch(()=>{
-                    alert('Darn!')
+                    alert('Something went wrong! please try later.')
                 })
         }
         else{
-            this.setState((prevState, props) => {
-                let jokes = null
-                return {jokes};
+            jokes = null
+            showSearch = false
+            originalJokes = null
+            this.setState(() => {
+                return {jokes,originalJokes,showSearch};
             })
         }
 
@@ -45,13 +63,16 @@ export default class Header extends React.Component{
         return(
             <div>
                 <header>
-                    <nav>
-                        <GLogin callbackFromParent={this.myCallback.bind(this)} />
-                    </nav>
+                <nav>
+                    <GLogin callbackFromParent={this.callback.bind(this)} />
+                </nav>
+                <div>
+                    { this.state.showSearch ? <input type="text" onChange={this.search.bind(this)} /> : null }
+                </div>
                 </header>
-                    <div>
-                        <Jokes jokes={this.state.jokes}  />
-                    </div>
+                <section>
+                    <Jokes jokes={this.state.jokes}  />
+                </section>
             </div>
         )
     }
