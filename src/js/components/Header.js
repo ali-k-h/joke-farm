@@ -61,8 +61,8 @@ export default class Header extends React.Component{
     }
     render(){
         return(
-            <div>
-                <header>
+            <div class="container">
+                <header class="header">
                 <nav>
                     <GLogin callbackFromParent={this.callback.bind(this)} />
                 </nav>

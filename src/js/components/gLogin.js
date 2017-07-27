@@ -62,8 +62,8 @@ export default class GLogin extends React.Component{
         sc.async = true
         document.body.appendChild(sc)
         sc.onload = ()=>{
-            let scope = 'https://www.googleapis.com/auth/userinfo.profile'
-            let clientId = '428861106660-3k079ehc7hnlum5plt6pqifsoas0ln6g.apps.googleusercontent.com'
+            const scope = 'https://www.googleapis.com/auth/userinfo.profile'
+            const clientId = '428861106660-3k079ehc7hnlum5plt6pqifsoas0ln6g.apps.googleusercontent.com'
             gapi.load('client', {
                 callback: ()=> {
                     gapi.client.init({
