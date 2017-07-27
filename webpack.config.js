@@ -3,6 +3,7 @@
 let webpack = require('webpack')
 let path = require('path')
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
 module.exports =(env) => {
     let debug = env !== "prod";
     return {
@@ -60,6 +61,11 @@ module.exports =(env) => {
                 //path: __dirname + "/src/",
                 filename: "main.css",
               //  disable: debug
+            }),
+            new HtmlWebpackPlugin({  // Also generate a test.html
+                filename: 'index.html',
+                template: 'index.html',
+                inject:false
             })
            // new ExtractTextPlugin('main.css'),
 

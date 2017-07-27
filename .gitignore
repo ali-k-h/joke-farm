@@ -1,6 +1,8 @@
 # Logs
 logs
 docs
+dist
+dist_
 *.log
 npm-debug.log*
 yarn-debug.log*
