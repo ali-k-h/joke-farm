@@ -1,4 +1,4 @@
-    export function xhrPromise(options){
+export function xhrPromise(options){
     return new Promise((resolve, reject)=>{
         try {
             let xhr = new XMLHttpRequest();

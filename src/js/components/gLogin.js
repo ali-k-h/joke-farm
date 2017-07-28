@@ -1,7 +1,5 @@
-/**
- * Created by Ali on 7/26/2017.
- */
 import React from "react"
+
 export default class GLogin extends React.Component{
     constructor(){
         super()

@@ -9,8 +9,7 @@ module.exports =(env) => {
     return {
         context: path.join(__dirname, "src"),
         devtool: debug ? "inline-sourcemap" : false,
-        entry: ["./js/index.js",require.resolve('./src/css/main.less')],
-       // entry: ["./js/index.js",require.resolve("./css/main.less")],
+        entry: ["babel-polyfill","./js/index.js",require.resolve('./src/css/main.less')],
         module: {
             loaders: [
                 {
@@ -18,7 +17,7 @@ module.exports =(env) => {
                     exclude: /(node_modules|bower_components)/,
                     loader: 'babel-loader',
                     query: {
-                        presets: ['react', 'es2015', 'stage-0'],
+                        presets: ['react', 'es2015', 'stage-0','env'],
                         plugins: ['react-html-attrs', 'transform-decorators-legacy', 'transform-class-properties'],
                     }
                 },
@@ -57,18 +56,13 @@ module.exports =(env) => {
                 }
             }),
             new ExtractTextPlugin({
-               // filename: "[name].[contenthash].css",
-                //path: __dirname + "/src/",
-                filename: "main.css",
-              //  disable: debug
+                filename: "main.css"
             }),
-            new HtmlWebpackPlugin({  // Also generate a test.html
+            new HtmlWebpackPlugin({
                 filename: 'index.html',
                 template: 'index.html',
                 inject:false
             })
-           // new ExtractTextPlugin('main.css'),
-
         ]
     }
 };

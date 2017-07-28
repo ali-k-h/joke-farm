@@ -1,9 +1,9 @@
 import React from 'react'
-import GLogin from './gLogin'
-import * as xhr from './xhr'
-import Jokes from './Jokes'
+import GLogin from '../components/gLogin'
+import * as xhr from '../components/xhr'
+import Jokes from '../components/Jokes'
 
-export default class Header extends React.Component{
+export default class Home extends React.Component{
     constructor(){
         super()
         this.state = {
@@ -71,7 +71,7 @@ export default class Header extends React.Component{
                 <GLogin callbackFromParent={this.callback.bind(this)} />
                 <div class="search-wrapper">
                     { this.state.showSearch ?
-                    <input class="search-input" placeholder="Search for fun..."
+                    <input class="search-input" autoFocus="true" placeholder="Search for fun..."
                            type="text" onChange={this.search.bind(this)} /> : null }
                 </div>
                 </header>
