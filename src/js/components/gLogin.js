@@ -89,9 +89,10 @@ export default class GLogin extends React.Component{
 
     render(){
         return(
-            <div>
-                <span id="greeting">{this.state.greeting}</span>
-                <span id="google-sign-in" onClick={this.state.signupClick.bind(this)}>{this.state.signupText}</span>
+            <div class="row g-login">
+                <div class="col-xs-12 greeting">{this.state.greeting}</div>
+                <div class={this.state.user?"col-xs-12 sign-out":"col-xs-12 sign-in"}
+                      onClick={this.state.signupClick.bind(this)}>{this.state.signupText}</div>
             </div>
         )
     }

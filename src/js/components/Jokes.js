@@ -7,16 +7,16 @@ export default class Jokes extends React.Component{
         if(jokes){
             listItems = this.props.jokes.map((item) =>{
                 return (
-                    <li key={item.id}>
+                    <div class="joke-item" key={item.id}>
                         {item.joke}
-                    </li>
+                    </div>
                 );
             });
         }
         return(
-            <ul>
+            <div>
                 {listItems}
-            </ul>
+            </div>
         )
     }
 }

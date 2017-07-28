@@ -7,7 +7,7 @@ export default class Header extends React.Component{
     constructor(){
         super()
         this.state = {
-            user: {},
+            user: null,
             jokes: [],
             originalJokes:[],
             showSearch:false
@@ -53,8 +53,9 @@ export default class Header extends React.Component{
             jokes = null
             showSearch = false
             originalJokes = null
+            user=null
             this.setState(() => {
-                return {jokes,originalJokes,showSearch};
+                return {jokes,originalJokes,showSearch,user};
             })
         }
 
@@ -62,17 +63,24 @@ export default class Header extends React.Component{
     render(){
         return(
             <div>
-                <header>
-                <nav>
-                    <GLogin callbackFromParent={this.callback.bind(this)} />
-                </nav>
-                <div>
-                    { this.state.showSearch ? <input type="text" onChange={this.search.bind(this)} /> : null }
+            <div class="container farm-fence">
+                <header class="header">
+                <div class="col-xs-12 title">
+                    Joke Farm! Jump in...
+                </div>
+                <GLogin callbackFromParent={this.callback.bind(this)} />
+                <div class="search-wrapper">
+                    { this.state.showSearch ?
+                    <input class="search-input" placeholder="Search for fun..."
+                           type="text" onChange={this.search.bind(this)} /> : null }
                 </div>
                 </header>
-                <section>
+            </div>
+            <div class="container farm-fence">
+                <section class="jokes-list">
                     <Jokes jokes={this.state.jokes}  />
                 </section>
+            </div>
             </div>
         )
     }
