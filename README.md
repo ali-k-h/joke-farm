@@ -16,4 +16,4 @@ view it in http://localhost:8080
 Built package is in dist_ folder
 
 ## Issues
-        1- In IE 11, Signup process with Google doesn't go through. Throws an error 'SCRIPT5022: [object Object]'
+1- In IE 11, Signup process with Google doesn't go through. Throws an error 'SCRIPT5022: [object Object]'
