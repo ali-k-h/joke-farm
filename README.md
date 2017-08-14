@@ -1,11 +1,11 @@
 # Joke Farm
 
 ## Install dependencies
-Install the dependencies with: `npm install `
+Install the dependencies with: `npm install --dev`
 
 ## Run
     `npm run dev`
-    view it in http://localhost:8080
+view it in http://localhost:8080
 
 ## Test
     `npm run test`
@@ -16,6 +16,4 @@ Install the dependencies with: `npm install `
     Built package is in dist_ folder
 
 ## Issues
-    With IE 11
-        1- Sign up process with Google doesn't go through. Throws an error 'SCRIPT5022: [object Object]'
-        2- Google font doesn't show up as expected
+        1- In IE 11, Signup process with Google doesn't go through. Throws an error 'SCRIPT5022: [object Object]'
